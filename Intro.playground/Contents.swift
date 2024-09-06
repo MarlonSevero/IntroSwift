@@ -50,18 +50,47 @@ Crie uma função que receba um parâmetro que representa o nome de uma pessoa. 
  
  Dado um dicionário com duas letras que representam um estado como chave e o nome inteiro do estado como valor, escreva uma função que exiba todos os estados cujo nome tenha mais que 8 caracteres.
 
- Por exemplo, para o dicionário [”SP”: “São Paulo”, “CE”: “Ceará”, “RJ”: “Rio de Janeiro”], será exibido “São Paulo” e “Rio de Janeiro”, pois “Ceará” não possui mais de 8 caracteres.*/
+ Por exemplo, para o dicionário [”SP”: “São Paulo”, “CE”: “Ceará”, “RJ”: “Rio de Janeiro”], será exibido “São Paulo” e “Rio de Janeiro”, pois “Ceará” não possui mais de 8 caracteres.
+ 
+ 
+ var teste = ["SP": "São Paulo", "CE": "Ceara", "RJ": "Rio de Janeiro"]
+
+     func lista_cidades(_ estatos: [String: String]) {
+         for (estado, cidade) in estatos{
+             if cidade.count >= 4 {
+                 print("\(estado)-\(cidade)")
+             }
+     }
+     return print("----------------")
+ }
+
+ lista_cidades(["SP": "São Paulo", "CE": "Ceara", "RJ": "Rio de Janeiro"])
+
+ 
+ 
+ */
 
 
-var teste = ["SP": "São Paulo", "CE": "Ceara", "RJ": "Rio de Janeiro"]
-
-    func lista_cidades(_ estatos: [String: String]) {
-        for (estado, cidade) in estatos{
-            if cidade.count >= 4 {
-                print("\(estado)-\(cidade)")
-            }
+class Triangulo{
+    var base: Int
+    var altura : Int
+    
+    init(base: Int, altura: Int) {
+        self.base = base
+        self.altura = altura
     }
-    return print("----------------")
+    
+    
+    func calculaArea() -> Int{
+        return base * altura
+    }
+    
+    func calcuPerimetro() -> Int{
+        return base*base
+    }
 }
 
-lista_cidades(["SP": "São Paulo", "CE": "Ceara", "RJ": "Rio de Janeiro"])
+var tri = Triangulo(base: 20, altura: 10)
+
+print(tri.calcuPerimetro())
+print(tri.calculaArea())
