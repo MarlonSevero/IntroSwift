@@ -66,11 +66,9 @@ Crie uma função que receba um parâmetro que representa o nome de uma pessoa. 
 
  lista_cidades(["SP": "São Paulo", "CE": "Ceara", "RJ": "Rio de Janeiro"])
 
- 
- 
  */
 
-
+/*
 class Triangulo{
     var base: Int
     var altura : Int
@@ -94,3 +92,77 @@ var tri = Triangulo(base: 20, altura: 10)
 
 print(tri.calcuPerimetro())
 print(tri.calculaArea())
+*/
+
+
+/*
+ Crie uma classe Empregado que possuirá os seguintes atributos:
+
+ A. Nome (String);
+ B. Salário (Double).
+ Crie uma classe filha de Empregado, a Gerente. Afinal de contas, gerente é um tipo de empregado.
+
+ Na classe “Gerente”, adicione como atributo “departamento”, que deve ser uma String que diga a qual departamento o gerente pertence. Lembre de usar o super.init() para inicializar os atributos da classe pai.
+ 
+ Crie uma outra classe filha chamada Vendedor.
+ Faça um método chamado percentualComissao, que recebe como parâmetro o número de vendas que o vendedor realizou. Cada vendedor possui uma comissão de 10% sobre cada venda. Essa comissão é adicionada ao salário final. Retorne o valor final que o vendedor irá receber, supondo que cada venda possui um valor de R$50,00.
+ 
+ Ainda com base no desafio anterior, vamos verificar os tipos de “Empregado”, se a instância é do tipo “Gerente” ou “Vendedor”.
+
+ Crie uma função chamada verificaTipo que recebe, como parâmetro, uma instância do tipo Empregado;
+ Faça o uso do typecasting para verificar se a instância é um gerente, vendedor ou apenas um outro empregado;
+ Mostre no console o nome do empregado e a sua função. Caso o empregado for um gerente, mostre seu departamento também. O resultado final será parecido com esse:
+ “O(a) empregado(a) Felipe é um(a) gerente e está no departamento RH.”
+ “O(a) empregado(a) Daniel é um(a) vendedor.
+ 
+ */
+
+class Empregado{
+    var name: String
+    var salario: Double
+    
+    init(name: String, salario: Double) {
+        self.name = name
+        self.salario = salario
+    }
+    
+    func show_salary(){
+        print("O salario atual deste funcionario é R$\(self.salario) reais")
+    }
+    
+    func verificaTipo(_ empregado: Empregado) {
+        if let gerente = empregado as? Gerente{
+            print("O nome deste funcionario é \(gerente.name) e este no departamento \(gerente.departamento)")
+        }else if let vendedor = empregado as? Vendedor{
+            print("O nome deste funcionario é \(vendedor.name) e tem o salario de \(vendedor.salario)")
+        }
+    }
+}
+class Gerente: Empregado{
+    var departamento: String
+    
+    init(name: String, salario: Double, departamento: String) {
+        self.departamento = departamento
+        super.init(name: name, salario: salario)
+    }
+}
+
+class Vendedor: Empregado{
+        override init(name: String, salario: Double) {
+        super.init(name: name, salario: salario)
+    }
+    
+    func calculaSalary(_ value: Int) -> Double{
+        return (0.1 * 50.0 * Double(value)) + self.salario
+    }
+}
+
+
+var gen1: Gerente = Gerente(name: "Teste", salario: 23.323, departamento: "Administracao")
+var vende: Vendedor = Vendedor(name: "Vendedor", salario: 4050.04)
+gen1.show_salary()
+vende.show_salary()
+vende.calculaSalary(1)
+vende.show_salary()
+vende.verificaTipo(vende)
+vende.verificaTipo(gen1)
