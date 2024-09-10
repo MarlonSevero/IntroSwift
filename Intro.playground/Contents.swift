@@ -333,15 +333,89 @@ print(tri.calculaArea())
  let texto = "hello"
 
  print(texto.contaString())
- */
-
-
-enum Mes: String{
-    case Janeira = "Jan", Fevereiro, Marco, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Dezembro
-    
+ 
+xenum Mes: String{
+ case Janeira = "Jan", Fevereiro, Marco, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Dezembro
+ 
 }
 
 
 var num2 = Mes.Fevereiro
 var num1: Mes = .Janeira
 print(num1.rawValue)
+
+
+ */
+
+
+
+
+/**
+ Crie um protocolo chamado “Area” que define uma propriedade que pode apenas ser lida, e não setada, que corresponde a área de determinada figura, com o tipo Double. Essa propriedade é definida como uma propriedade computada, mas lembre-se que no protocolo não há diferenciação entre propriedades armazenadas ou computadas, você apenas define uma propriedade.
+
+ E então, crie duas classes (ou structs) que implementem o protocolo Area: Quadrado e Triangulo. Implemente o cálculo da área de acordo com cada figura (cada classe precisa receber os parâmetros necessários para o cálculo) e por fim, imprima o valor de cada área no console.
+ 
+ protocol Area{
+     var area: Double {get}
+ }
+
+ class Quadrado: Area{
+     var area: Double{
+         return lado * lado
+     }
+     var lado: Double
+     
+     init(_ lado: Double) {
+         self.lado = lado
+     }
+ }
+
+ class Triangulo: Area{
+     var area: Double{
+         return ((base * altura)/2)
+     }
+     
+     var altura: Double
+     var base: Double
+     
+     init(_ base: Double, _ altura: Double) {
+         self.base = base
+         self.altura = altura
+     }
+     
+     func calcArea() -> Double{
+         return ((self.base * self.altura) / 2)
+     }
+ }
+
+
+ var x = Quadrado(200)
+ var y = Triangulo(100, 20)
+ print(x.area)
+ print(y.area)
+
+ */
+
+
+
+enum Moeda: Int {
+  case UmCentavo = 1
+  case CincoCentavos = 5
+  case DezCentavos = 10
+  case VinteCincoCentavos = 25
+  case CinquentaCentavos = 50
+}
+
+let moedas: [Moeda] = [.CincoCentavos, .UmCentavo, .CincoCentavos, .VinteCincoCentavos, .CincoCentavos, .DezCentavos]
+
+func somaMoedas(_ moedas:[Moeda]){
+    var soma: Int = 0
+    
+    for valor in moedas{
+        soma += valor.rawValue
+    }
+    print("A soma das moedas é \(soma)")
+}
+
+
+somaMoedas(moedas)

@@ -44,3 +44,6 @@ var pessoa = Pessoa(nome: "teste", idade: 100, altura: 1.70, peso: 60)
 pessoa.imc
 pessoa.validaMaioridade
 */
+
+
+
